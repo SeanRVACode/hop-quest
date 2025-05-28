@@ -1,2 +1,2 @@
-from .brewery_service import Brew_Service
-from .utilities import Data_Cleaner
+from .brewery_service import Brew_Service  # noqa
+from .utilities import Data_Cleaner  # noqa
