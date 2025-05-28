@@ -41,6 +41,26 @@ class Brew_Service:
             ic(e)
             raise Exception
 
+    def search_by_params(self, request=None):
+        params = {}
+        ic(request.form.items())
+
+        # prettier-ignore
+        params = {k: v for k, v in request.form.items() if v}
+
+        if params:
+            query_string = urlencode(params)
+            url = f"{self.base_url}?{query_string}"
+            resp = self.session.get(url)
+            json_data = resp.json()
+            json_data = self.dc.create_map_link(json_data)
+            if json_data:
+                return json_data
+            else:
+                return None
+        else:
+            return None
+
 
 if __name__ == "__main__":
     Brew_Service()
