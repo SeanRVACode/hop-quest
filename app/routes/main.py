@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request
 from jinja2 import TemplateNotFound
 from icecream import ic
 from app.services import Brew_Service, Data_Cleaner
