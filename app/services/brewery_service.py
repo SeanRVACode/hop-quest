@@ -1,12 +1,12 @@
 import requests
 import yaml
 from icecream import ic
-import os
 from .utilities import Data_Cleaner
+from urllib.parse import urlencode
 
 
 # Load the config file that stores values needed for API
-with open("./services/config.yaml") as file:
+with open("./app/services/config.yaml") as file:
     cfg = yaml.load(file, Loader=yaml.FullLoader)
 
 
@@ -19,7 +19,8 @@ class Brew_Service:
 
     def random_breweries(self):
         data = self._get_ten_random_breweries()
-        updatated_data = self.dc.create_Map_link(data)
+        ic("Random Brew Search")
+        updatated_data = self.dc.create_map_link(data)
         return updatated_data
 
     def _get_ten_random_breweries(self):

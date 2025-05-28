@@ -37,7 +37,7 @@
   <body class="brew-bod">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('main.search') }}">Brew Search 🍺</a>
+        <a class="navbar-brand" href="{{ url_for('main.home') }}">HopQuest 🍺</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -51,15 +51,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+          {% if request.url.find("/random") == -1 %}
             <li class="nav-item">
-              <a href="/brewery_lookup" class="nav-link active"
+              <a href="{{url_for('main.random_breweries')}}" class="nav-link active"
                 >10 Random Breweries</a
               >
             </li>
+            {% endif %}
                        <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('main.home')}}"
-                >Main Portfolio Site</a></a
+              <a class="nav-link active" aria-current="page" href="https:seanrvacode.github.io"
+                >Creator Site</a></a
               >
             </li>
           </ul>

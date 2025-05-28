@@ -1,5 +1,6 @@
 import re
 from typing import Dict
+from icecream import ic
 
 
 class Data_Cleaner:
@@ -43,6 +44,7 @@ class Data_Cleaner:
             address = f"{street} {city} {state}, {postal_code}"
 
             brewery["address"] = address.replace(" ", "+")
+        ic(modified_data)
         return modified_data
 
     def proper_names(self, json_data):
