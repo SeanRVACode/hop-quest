@@ -1,0 +1,73 @@
+{% extends 'header.html' %} {% block title %}Brew-sults{% endblock %} {% block
+content %}
+<div class="container d-flex justify-content-center" id="brew_head">
+  <h1>Brew-sults</h1>
+</div>
+
+<!-- Table layout for large screens -->
+<div class="container d-none d-lg-block" id="brew_table">
+  <div class="table-responsive">
+    <table class="table table-dark table-hover text-nowrap">
+      <thead>
+        <tr>
+          {% for header in headers %} {% if not header in
+          ['Id','Longitude','Latitude','Address 2','Address
+          3','Phone','State','Address 1','Country','Street','Postal Code'] %}
+          <th scope="col">{{ header }}</th>
+          {% endif %} {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for brewery in data %}
+        <tr>
+          {% for key, value in brewery.items() %} {% if not key in
+          ['id','longitude','latitude','address_2','address_3','phone','address_1','country','state','postal_code','street']
+          %} {% if key == 'website_url' %}
+          <td>
+            <a href="{{ value }}" target="_blank" rel="noopener noreferrer"
+              >🍺</a
+            >
+          </td>
+          {% elif key == 'address' %}
+          <td>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query={{value}}"
+              rel="noopener noreferrer"
+              target="_blank"
+              >🗺️</a
+            >
+          </td>
+          {% else %}
+          <td>{{ value|title }}</td>
+          {% endif %} {% endif %} {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Card layout for small screens -->
+<div class="container d-lg-none">
+  {% for brewery in data %}
+  <div class="card text-bg-dark mb-3">
+    <div class="card-body">
+      {% for key, value in brewery.items() %} {% if not key in
+      ['id','longitude','latitude','address_2','address_3','phone','address_1','country','state','postal_code','street']
+      %} {% if key == 'website_url' %}
+      <p><strong>Website:</strong> <a href="{{ value }}">🍺</a></p>
+      {% elif key == 'address' %}
+      <p>
+        <strong>Address:</strong>
+        <a href="https://www.google.com/maps/search/?api=1&query={{value}}"
+          >🗺️</a
+        >
+      </p>
+      {% else %}
+      <p><strong>{{ key|title }}:</strong> {{ value }}</p>
+      {% endif %} {% endif %} {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

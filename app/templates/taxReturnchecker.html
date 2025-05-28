@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tax Return Status</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="status title"><h2>Live Status of your Tax Return:</h2></div>
+      <div class="logout">
+        <a href="/logout" class="btn btn-dark"><u>Log Out</u></a>
+      </div>
+      <p id="statusDisplay">{{ status }}</p>
+
+      <button type="button" class="btn btn-secondary" id="updateButton">
+        Update Status
+      </button>
+
+      <div class="col-lg-8 text-center" id="LastUpdateTime">
+        <p id="textupdate">Last Updated 1 Minute Ago</p>
+      </div>
+      <style>
+        #main {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          text-align: center;
+          font-size: 2vw;
+        }
+        body {
+          background-color: rgb(0, 72, 100, 1);
+          font-family: Arial, sans-serif;
+          color: white;
+          font-size: 2vw;
+        }
+        .logout {
+          position: absolute;
+          top: 30px;
+          left: 30px;
+        }
+        #LastUpdateTime {
+          position: absolute;
+          bottom: 30px;
+        }
+        button {
+          margin-bottom: 20px;
+          margin-top: 50px;
+        }
+        p {
+          margin-top: 50px;
+        }
+        #textupdate {
+          font-size: 0.5em;
+        }
+      </style>
+    </div>
+  </body>
+  <script>
+    const statusMessages = [
+      "Training Room Is Down. Delays expected.",
+      "In the Dumpster on Fire.",
+      "Sent to the wrong Client.",
+      "Still waiting for you to sign that Engagement Letter.",
+      "Lost in the Bermuda Triangle of Paperwork.",
+      'Stuck in the "Quick Question" rabbit hole.',
+      "Still trying to get past MFA to work on it. 2 Down 1 to go!",
+      'Stuck driving into the office for the "Culture".',
+      "Still uploading to the cloud...ETA: 2040.",
+      "Will process after Drafting AI regulations that no one will read.",
+      "GIF",
+      "On the phone with TR support. This could be awhile...",
+      'Your return is in "hypothetical mode"—where possibilities are endless, but nothing gets finalized.',
+    ];
+
+    const gifLink = "/static/assets/bloody-mary-cocktail.gif";
+
+    // Function to get a random status
+    function getRandomStatus() {
+      const randomIndex = Math.floor(Math.random() * statusMessages.length);
+      return statusMessages[randomIndex];
+    }
+
+    // Render the random status
+    function displayRandomStatus() {
+      const statusDisplay = document.getElementById("statusDisplay");
+      const randomStatus = getRandomStatus();
+
+      if (randomStatus === "GIF") {
+        // Display the GIF using the image link
+        statusDisplay.innerHTML = `<img src="${gifLink}" alt="Bloody Mary GIF" style="max-width: 100%; height: auto;" />`;
+      } else {
+        // Display a regular text status
+        statusDisplay.textContent = randomStatus;
+      }
+    }
+
+    // Button Click to update status
+    document
+      .getElementById("updateButton")
+      .addEventListener("click", displayRandomStatus);
+  </script>
+</html>
