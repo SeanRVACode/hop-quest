@@ -5,8 +5,6 @@ import os
 from .utilities import Data_Cleaner
 
 
-ic(os.getcwd())
-
 # Load the config file that stores values needed for API
 with open("./services/config.yaml") as file:
     cfg = yaml.load(file, Loader=yaml.FullLoader)
