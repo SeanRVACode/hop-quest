@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/styles_2.css" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles_2.css')}}" />
     {% block styles %}{{ bootstrap.load_css()}}{{ bootstrap.load_js()}}
     {%endblock%}
     <title>{% block title %}{% endblock%}</title>{% with messages = get_flashed_messages() %}
@@ -37,7 +37,7 @@
   <body class="brew-bod">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('search')}}">Brew Search 🍺</a>
+        <a class="navbar-brand" href="{{ url_for('main.search') }}">Brew Search 🍺</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -58,7 +58,7 @@
               >
             </li>
                        <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('home')}}"
+              <a class="nav-link active" aria-current="page" href="{{ url_for('main.home')}}"
                 >Main Portfolio Site</a></a
               >
             </li>
